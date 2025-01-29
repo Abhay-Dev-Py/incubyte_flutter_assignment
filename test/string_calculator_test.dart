@@ -28,5 +28,11 @@ void main() {
       expect(calculator.add("1,2\n3"), equals(6));
       expect(calculator.add("1\n2\n3"), equals(6));
     });
+
+    test('should support custom delimiters', () {
+      expect(calculator.add("//;\n1;2"), equals(3));
+      expect(calculator.add("//.\n2.3.4"), equals(9));
+      expect(calculator.add("//p\n1p2p3"), equals(6));
+    });
   });
 }

@@ -3,12 +3,20 @@ class StringCalculator {
     if (numbers.isEmpty) {
       return 0;
     }
+
+    String delimiter = ',';
+    String numbersToProcess = numbers;
+
+    if (numbers.startsWith('//')) {
+      delimiter = numbers[2];
+      numbersToProcess = numbers.substring(4);
+    }
     
-    String normalizedNumbers = numbers.replaceAll('\n', ',');
+    String normalizedNumbers = numbersToProcess.replaceAll('\n', delimiter);
     
-    if (normalizedNumbers.contains(',')) {
+    if (normalizedNumbers.contains(delimiter)) {
       return normalizedNumbers
-          .split(',')
+          .split(delimiter)
           .map((num) => int.parse(num))
           .reduce((sum, num) => sum + num);
     }
