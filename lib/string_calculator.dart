@@ -15,12 +15,23 @@ class StringCalculator {
     String normalizedNumbers = numbersToProcess.replaceAll('\n', delimiter);
     
     if (normalizedNumbers.contains(delimiter)) {
-      return normalizedNumbers
+      List<int> nums = normalizedNumbers
           .split(delimiter)
           .map((num) => int.parse(num))
-          .reduce((sum, num) => sum + num);
+          .toList();
+          
+      List<int> negativeNumbers = nums.where((n) => n < 0).toList();
+      if (negativeNumbers.isNotEmpty) {
+        throw ArgumentError('negative numbers not allowed: ${negativeNumbers.join(", ")}');
+      }
+      
+      return nums.reduce((sum, num) => sum + num);
     }
     
-    return int.parse(numbers);
+    int number = int.parse(numbers);
+    if (number < 0) {
+      throw ArgumentError('negative numbers not allowed: $number');
+    }
+    return number;
   }
 } 

@@ -34,5 +34,25 @@ void main() {
       expect(calculator.add("//.\n2.3.4"), equals(9));
       expect(calculator.add("//p\n1p2p3"), equals(6));
     });
+
+    test('should throw exception for negative numbers', () {
+      expect(
+        () => calculator.add("-1,2"),
+        throwsA(isA<ArgumentError>().having(
+          (e) => e.message,
+          'message',
+          'negative numbers not allowed: -1',
+        )),
+      );
+
+      expect(
+        () => calculator.add("2,-4,3,-5"),
+        throwsA(isA<ArgumentError>().having(
+          (e) => e.message,
+          'message',
+          'negative numbers not allowed: -4, -5',
+        )),
+      );
+    });
   });
 }
