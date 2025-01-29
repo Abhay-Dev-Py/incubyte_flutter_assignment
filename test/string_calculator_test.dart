@@ -17,5 +17,10 @@ void main() {
       expect(calculator.add("1"), equals(1));
       expect(calculator.add("5"), equals(5));
     });
+
+    test('should return sum for two comma separated numbers', () {
+      expect(calculator.add("1,2"), equals(3));
+      expect(calculator.add("5,7"), equals(12));
+    });
   });
 } 
