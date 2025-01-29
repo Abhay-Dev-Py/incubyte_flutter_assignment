@@ -4,8 +4,10 @@ class StringCalculator {
       return 0;
     }
     
-    if (numbers.contains(',')) {
-      return numbers
+    String normalizedNumbers = numbers.replaceAll('\n', ',');
+    
+    if (normalizedNumbers.contains(',')) {
+      return normalizedNumbers
           .split(',')
           .map((num) => int.parse(num))
           .reduce((sum, num) => sum + num);

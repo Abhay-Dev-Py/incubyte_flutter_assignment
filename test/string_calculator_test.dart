@@ -22,5 +22,11 @@ void main() {
       expect(calculator.add("1,2"), equals(3));
       expect(calculator.add("5,7"), equals(12));
     });
+
+    test('should handle newlines between numbers', () {
+      expect(calculator.add("1\n2,3"), equals(6));
+      expect(calculator.add("1,2\n3"), equals(6));
+      expect(calculator.add("1\n2\n3"), equals(6));
+    });
   });
-} 
+}
